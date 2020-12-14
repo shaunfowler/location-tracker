@@ -8,53 +8,63 @@
 import SwiftUI
 import MapKit
 
-class MKMapViewCoordinator: NSObject, MKMapViewDelegate {
-    var parent: MapView
+class CoordinatePath: ObservableObject {
+    @Published var coordinates: [CLLocationCoordinate2D] = []
+}
 
-    init(_ parent: MapView) {
+// MARK: - Coordinator
+
+class MKMapViewCoordinator: NSObject, MKMapViewDelegate {
+    var parent: MKMapViewRepresentable
+    var hasReceivedUserLocationOnce = false
+
+    init(_ parent: MKMapViewRepresentable) {
         self.parent = parent
     }
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let lineView = MKPolylineRenderer(overlay: overlay)
-            lineView.strokeColor = .green
+            lineView.strokeColor = .systemBlue
+            lineView.lineWidth = 3
             return lineView
         }
 
         fatalError("Unexpected overlay type")
     }
+
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        if !hasReceivedUserLocationOnce  {
+            hasReceivedUserLocationOnce = true
+            mapView.userTrackingMode = .follow
+        }
+    }
+
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        parent.userTrackingMode = mapView.userTrackingMode
+    }
 }
 
-class CoordinatePath: ObservableObject {
-    @Published var coordinates: [CLLocationCoordinate2D] = []
-}
+// MARK: - UIViewRepresentable
 
-struct MapView: UIViewRepresentable {
+struct MKMapViewRepresentable: UIViewRepresentable {
 
     @EnvironmentObject var path: CoordinatePath
+    @Binding var userTrackingMode: MKUserTrackingMode
+
+    // MARK: - UIViewRepresentable
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
-        mapView.setRegion(
-            MKCoordinateRegion(
-                center: mapView.userLocation.coordinate,
-                span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)),
-            animated: true)
         return mapView
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
-        let coords: [CLLocationCoordinate2D] = [
-            .init(latitude: 33.98995557, longitude: -118.44562951),
-            .init(latitude: 33.97995557, longitude: -118.45562951),
-            .init(latitude: 33.96995557, longitude: -118.43562951),
-            .init(latitude: 33.95995557, longitude: -118.42562951),
-        ]
-        view.addOverlay(MKPolyline(coordinates: coords, count: coords.count))
+        view.userTrackingMode = userTrackingMode
+        view.addOverlay(MKPolyline(coordinates: path.coordinates, count: path.coordinates.count))
     }
 
     func makeCoordinator() -> MKMapViewCoordinator {
@@ -62,8 +72,43 @@ struct MapView: UIViewRepresentable {
     }
 }
 
+// MARK: - View
+
+struct MapView: View {
+
+    @State var userTrackingMode: MKUserTrackingMode = .none
+
+    var body: some View {
+        ZStack {
+            MKMapViewRepresentable(userTrackingMode: $userTrackingMode)
+                .edgesIgnoringSafeArea(.all)
+
+            if userTrackingMode != MKUserTrackingMode.follow {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button("Center", action: {
+                            self.userTrackingMode = .follow
+                        })
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                        .frame(alignment: .bottomTrailing)
+                    }
+                }
+                .padding()
+            }
+        }
+    }
+
+}
+
+// MARK: - Previews
+
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MKMapViewRepresentable(userTrackingMode: Binding.constant(.follow))
     }
 }

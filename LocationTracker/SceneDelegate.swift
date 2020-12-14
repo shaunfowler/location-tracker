@@ -7,22 +7,24 @@
 
 import UIKit
 import SwiftUI
+import CoreLocation
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let locationManager = CLLocationManager()
+    var coordinatePath = CoordinatePath()
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Get the managed object context from the shared persistent container.
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
 
-        // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
-        // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
+        locationManager.delegate = self
+        getInitialLocationAndStartMonitoring()
+
         let contentView = ContentView()
-            .environment(\.managedObjectContext, context)
-            .environmentObject(CoordinatePath())
+            .environmentObject(coordinatePath)
 
-        // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: contentView)
@@ -30,8 +32,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
     }
+}
 
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+extension SceneDelegate {
+    func getInitialLocationAndStartMonitoring() {
+        // If previously denied, do nothing.
+        let status = CLLocationManager.authorizationStatus()
+        if status == .denied || status == .restricted || !CLLocationManager.locationServicesEnabled() {
+            return
+        }
+
+        // If haven't show location permission dialog before, show it.
+        if(status == .notDetermined){
+            locationManager.requestAlwaysAuthorization()
+            return
+        }
+
+        // Request location updates.
+        locationManager.distanceFilter = 10.0
+        locationManager.requestLocation()
+        locationManager.startUpdatingLocation()
+    }
+}
+
+
+
+extension SceneDelegate: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            getInitialLocationAndStartMonitoring()
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last, location.horizontalAccuracy < 15 {
+            coordinatePath.coordinates.append(location.coordinate)
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("didFailWithError: \(error)")
     }
 }

@@ -11,8 +11,6 @@
 		5DBD5B821AF790D28EF887D9D5E1722A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41977DBFFFEE8FF500D258C4877FD954 /* LaunchScreen.storyboard */; };
 		6142AD9F0130F795A61EA2B0C2E31EA8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B597BEC0BE51DFB385077CFAB3A88143 /* Preview Assets.xcassets */; };
 		68E78650C9522E55695F5BF96C11E039 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0B25F6C97AB3E69A1F2E15CB3754B1 /* SceneDelegate.swift */; };
-		693B3377676B6E086181DEC52C60D0C5 /* LocationTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ECB20117E83620DA64C28E164B9A0F9F /* LocationTracker.xcdatamodeld */; };
-		7A9DD389B027118DF3A01A253735566D /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7A09476E664BCBD4ED63466E25ABA /* LocationStorage.swift */; };
 		B6D6F762F5602C2B09F0E77ED253741C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128474FD8AACD1FADAC2B973499D0BF9 /* ContentView.swift */; };
 		D04E6C5606A1E7416F87552B4E48FB7F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84107816C8F80214379AC2106CFE9766 /* Location.swift */; };
 		E1CAB79ABA2D494FA1A471B898F04D29 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4C7946318AFF0C0BE8308F2976211 /* MapView.swift */; };
@@ -26,10 +24,8 @@
 		23DEC78879A37ED80AA3A9686BC3ADBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE4C7946318AFF0C0BE8308F2976211 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		3895FA952734F76A62336D157A156D86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6BE7A09476E664BCBD4ED63466E25ABA /* LocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorage.swift; sourceTree = "<group>"; };
 		7B0B25F6C97AB3E69A1F2E15CB3754B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		84107816C8F80214379AC2106CFE9766 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		94B3C42C15B4BDF369A1FA60A9E6137D /* LocationTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTracker.xcdatamodel; sourceTree = "<group>"; };
 		B597BEC0BE51DFB385077CFAB3A88143 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FFD5CA494EF3C3728D60128F1BE622FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -45,12 +41,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5A40BE6B1EA156BE79C94D8319262B95 = {
+		2F5EB4B19A89E640CC79E0421A8CDE7C /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				D79A54D466A82EF2DB8C844F24BE7654 /* LocationTracker */,
-				37B014A3C276E27E5073E4D2B46B3157 /* Products */,
+				B597BEC0BE51DFB385077CFAB3A88143 /* Preview Assets.xcassets */,
 			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		37B014A3C276E27E5073E4D2B46B3157 /* Products */ = {
@@ -59,6 +55,14 @@
 				0CBCF3BD616EA2BC5032A4AE1C161BC8 /* LocationTracker.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5A40BE6B1EA156BE79C94D8319262B95 = {
+			isa = PBXGroup;
+			children = (
+				D79A54D466A82EF2DB8C844F24BE7654 /* LocationTracker */,
+				37B014A3C276E27E5073E4D2B46B3157 /* Products */,
+			);
 			sourceTree = "<group>";
 		};
 		D79A54D466A82EF2DB8C844F24BE7654 /* LocationTracker */ = {
@@ -71,20 +75,10 @@
 				23DEC78879A37ED80AA3A9686BC3ADBB /* Info.plist */,
 				41977DBFFFEE8FF500D258C4877FD954 /* LaunchScreen.storyboard */,
 				84107816C8F80214379AC2106CFE9766 /* Location.swift */,
-				6BE7A09476E664BCBD4ED63466E25ABA /* LocationStorage.swift */,
-				ECB20117E83620DA64C28E164B9A0F9F /* LocationTracker.xcdatamodeld */,
 				2BE4C7946318AFF0C0BE8308F2976211 /* MapView.swift */,
 				7B0B25F6C97AB3E69A1F2E15CB3754B1 /* SceneDelegate.swift */,
 			);
 			path = LocationTracker;
-			sourceTree = "<group>";
-		};
-		2F5EB4B19A89E640CC79E0421A8CDE7C /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				B597BEC0BE51DFB385077CFAB3A88143 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,8 +154,6 @@
 				EFD310739E559109570C54D4924C8452 /* AppDelegate.swift in Sources */,
 				B6D6F762F5602C2B09F0E77ED253741C /* ContentView.swift in Sources */,
 				D04E6C5606A1E7416F87552B4E48FB7F /* Location.swift in Sources */,
-				7A9DD389B027118DF3A01A253735566D /* LocationStorage.swift in Sources */,
-				693B3377676B6E086181DEC52C60D0C5 /* LocationTracker.xcdatamodeld in Sources */,
 				E1CAB79ABA2D494FA1A471B898F04D29 /* MapView.swift in Sources */,
 				68E78650C9522E55695F5BF96C11E039 /* SceneDelegate.swift in Sources */,
 			);
@@ -181,6 +173,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4ED2B544D1D2D1E5C6B3DC2FA3463C04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"LocationTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = QQR7KQB65R;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = LocationTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shaun.LocationTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		E4336C1E66F0D33A8012FA96B0865013 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -242,6 +258,30 @@
 			};
 			name = Debug;
 		};
+		F5398F601C1F8FB91A4289FAB6147C47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"LocationTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = QQR7KQB65R;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = LocationTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shaun.LocationTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		FD5EE4C392FB0EA32673152A3913AEB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -297,54 +337,6 @@
 			};
 			name = Release;
 		};
-		F5398F601C1F8FB91A4289FAB6147C47 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"LocationTracker/Preview Content\"";
-				DEVELOPMENT_TEAM = QQR7KQB65R;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = LocationTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shaun.LocationTracker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		4ED2B544D1D2D1E5C6B3DC2FA3463C04 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"LocationTracker/Preview Content\"";
-				DEVELOPMENT_TEAM = QQR7KQB65R;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = LocationTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shaun.LocationTracker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -367,19 +359,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		ECB20117E83620DA64C28E164B9A0F9F /* LocationTracker.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				94B3C42C15B4BDF369A1FA60A9E6137D /* LocationTracker.xcdatamodel */,
-			);
-			currentVersion = 94B3C42C15B4BDF369A1FA60A9E6137D /* LocationTracker.xcdatamodel */;
-			path = LocationTracker.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = FA6BCCCC3672B3B0EFF9040280FF2F82 /* Project object */;
 }
